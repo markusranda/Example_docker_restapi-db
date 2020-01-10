@@ -16,10 +16,12 @@
         </e>
         <e p="Repositories" t="Include">
           <e p="ICategoryRepository.cs" t="Include" />
+          <e p="IUnitOfWork.cs" t="Include" />
         </e>
         <e p="Services" t="Include">
           <e p="Communication" t="Include">
             <e p="BaseResponse.cs" t="Include" />
+            <e p="SaveCategoryResponse.cs" t="Include" />
           </e>
           <e p="ICategoryService.cs" t="Include" />
         </e>
@@ -38,6 +40,7 @@
         <e p="Repositories" t="Include">
           <e p="BaseRepository.cs" t="Include" />
           <e p="CategoryRepository.cs" t="Include" />
+          <e p="UnitOfWork.cs" t="Include" />
         </e>
       </e>
       <e p="Program.cs" t="Include" />

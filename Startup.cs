@@ -33,6 +33,7 @@ namespace Supermarket.API {
 
             services.AddScoped<ICategoryRepository, CategoryRepository>();
             services.AddScoped<ICategoryService, CategoryService>();
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddAutoMapper(typeof(Startup)); // May be wrong to use current parameter, was added to resolve error
         }
 
