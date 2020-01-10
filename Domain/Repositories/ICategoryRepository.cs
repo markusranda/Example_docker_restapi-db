@@ -16,6 +16,9 @@ namespace Supermarket.API.Domain.Repositories {
          * not require an asynchronous method to update models.
          */
         void Update(Category category);
+
+        // Same as above concerning the async
+        void Remove(Category category);
     }
 
 }
