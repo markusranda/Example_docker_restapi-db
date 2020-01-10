@@ -31,10 +31,18 @@ namespace Supermarket.API {
                 options.UseInMemoryDatabase("supermarket-api-in-memory");
             });
 
+            // Bind all repos
             services.AddScoped<ICategoryRepository, CategoryRepository>();
+            services.AddScoped<IProductRepository, ProductRepository>();
+            
+            // Bind all services
             services.AddScoped<ICategoryService, CategoryService>();
+            services.AddScoped<IProductService, ProductService>();
+            
             services.AddScoped<IUnitOfWork, UnitOfWork>();
-            services.AddAutoMapper(typeof(Startup)); // May be wrong to use current parameter, was added to resolve error
+            
+            // May be wrong to use current parameter, was added to resolve error
+            services.AddAutoMapper(typeof(Startup)); 
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

@@ -7,6 +7,7 @@
       <e p=".gitignore" t="Include" />
       <e p="Controllers" t="Include">
         <e p="CategoriesController.cs" t="Include" />
+        <e p="ProductsController.cs" t="Include" />
         <e p="WeatherForecastController.cs" t="Include" />
       </e>
       <e p="Domain" t="Include">
@@ -17,6 +18,7 @@
         </e>
         <e p="Repositories" t="Include">
           <e p="ICategoryRepository.cs" t="Include" />
+          <e p="IProductRepository.cs" t="Include" />
           <e p="IUnitOfWork.cs" t="Include" />
         </e>
         <e p="Services" t="Include">
@@ -25,9 +27,11 @@
             <e p="CategoryResponse.cs" t="Include" />
           </e>
           <e p="ICategoryService.cs" t="Include" />
+          <e p="IProductService.cs" t="Include" />
         </e>
       </e>
       <e p="Extensions" t="Include">
+        <e p="EnumExtensions.cs" t="Include" />
         <e p="ModelStateExtensions.cs" t="Include" />
       </e>
       <e p="Mapping" t="Include">
@@ -41,6 +45,7 @@
         <e p="Repositories" t="Include">
           <e p="BaseRepository.cs" t="Include" />
           <e p="CategoryRepository.cs" t="Include" />
+          <e p="ProductRepository.cs" t="Include" />
           <e p="UnitOfWork.cs" t="Include" />
         </e>
       </e>
@@ -50,10 +55,12 @@
       </e>
       <e p="Resources" t="Include">
         <e p="CategoryResource.cs" t="Include" />
+        <e p="ProductResource.cs" t="Include" />
         <e p="SaveCategoryResource.cs" t="Include" />
       </e>
       <e p="Services" t="Include">
         <e p="CategoryService.cs" t="Include" />
+        <e p="ProductService.cs" t="Include" />
       </e>
       <e p="Startup.cs" t="Include" />
       <e p="Supermarket.API.csproj" t="IncludeRecursive" />
