@@ -29,6 +29,12 @@ namespace Supermarket.API.Controllers {
                     IEnumerable<CategoryResource>>(categories);
             return resources;
         }
+
+        [HttpPost]
+        public async Task<IActionResult> PostAsync([FromBody] SaveCategoryResource resource)
+        {
+            return null;
+        }
     }
 
 }
