@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ContentModelStore">
+    <e p="$USER_HOME$/.Rider2019.3/system/extResources" t="IncludeRecursive" />
+    <e p="$USER_HOME$/.Rider2019.3/system/resharper-host/local/Transient/ReSharperHost/v193/SolutionCaches/_.19.00" t="ExcludeRecursive" />
+    <e p="$PROJECT_DIR$" t="IncludeRecursive">
+      <e p="Controllers" t="Include">
+        <e p="CategoriesController.cs" t="Include" />
+        <e p="WeatherForecastController.cs" t="Include" />
+      </e>
+      <e p="Domain" t="Include">
+        <e p="Models" t="Include">
+          <e p="Category.cs" t="Include" />
+          <e p="EUnitOfMeasurement.cs" t="Include" />
+          <e p="Product.cs" t="Include" />
+        </e>
+        <e p="Repositories" t="Include">
+          <e p="ICategoryRepository.cs" t="Include" />
+        </e>
+        <e p="Services" t="Include">
+          <e p="ICategoryService.cs" t="Include" />
+        </e>
+      </e>
+      <e p="Mapping" t="Include">
+        <e p="ModelToResourceProfile.cs" t="Include" />
+      </e>
+      <e p="Persistence" t="Include">
+        <e p="Contexts" t="Include">
+          <e p="AppDbContext.cs" t="Include" />
+        </e>
+        <e p="Repositories" t="Include">
+          <e p="BaseRepository.cs" t="Include" />
+          <e p="CategoryRepository.cs" t="Include" />
+        </e>
+      </e>
+      <e p="Program.cs" t="Include" />
+      <e p="Properties" t="Include">
+        <e p="launchSettings.json" t="Include" />
+      </e>
+      <e p="Resources" t="Include">
+        <e p="CategoryResource.cs" t="Include" />
+      </e>
+      <e p="Services" t="Include">
+        <e p="CategoryService.cs" t="Include" />
+      </e>
+      <e p="Startup.cs" t="Include" />
+      <e p="Supermarket.API.csproj" t="IncludeRecursive" />
+      <e p="WeatherForecast.cs" t="Include" />
+      <e p="appsettings.Development.json" t="Include" />
+      <e p="appsettings.json" t="Include" />
+      <e p="bin" t="ExcludeRecursive" />
+      <e p="mono_crash.mem.31709.1.blob" t="Include" />
+      <e p="obj" t="ExcludeRecursive">
+        <e p="Debug" t="Include">
+          <e p="netcoreapp3.1" t="Include">
+            <e p="Supermarket.API.AssemblyInfo.cs" t="Include" />
+          </e>
+        </e>
+      </e>
+      <e p="packages" t="ExcludeRecursive" />
+    </e>
+  </component>
+</project>
