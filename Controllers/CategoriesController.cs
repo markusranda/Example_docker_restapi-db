@@ -38,6 +38,8 @@ namespace Supermarket.API.Controllers {
             {
                 return BadRequest(ModelState.GetErrorMessages());
             }
+
+            var category = _mapper.Map<SaveCategoryResource, Category>(resource);
             return null;
         }
     }

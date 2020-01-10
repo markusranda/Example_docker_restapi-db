@@ -18,6 +18,9 @@
           <e p="ICategoryRepository.cs" t="Include" />
         </e>
         <e p="Services" t="Include">
+          <e p="Communication" t="Include">
+            <e p="BaseResponse.cs" t="Include" />
+          </e>
           <e p="ICategoryService.cs" t="Include" />
         </e>
       </e>
@@ -26,6 +29,7 @@
       </e>
       <e p="Mapping" t="Include">
         <e p="ModelToResourceProfile.cs" t="Include" />
+        <e p="ResourceToModelProfile.cs" t="Include" />
       </e>
       <e p="Persistence" t="Include">
         <e p="Contexts" t="Include">
