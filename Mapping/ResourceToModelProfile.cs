@@ -4,11 +4,10 @@ using Supermarket.API.Resources;
 
 namespace Supermarket.API.Mapping {
 
-    public class ResourceToModelProfile {
+    public class ResourceToModelProfile : Profile{
         public ResourceToModelProfile()
         {
-            var config = new MapperConfiguration(cfg => 
-                { cfg.CreateMap<SaveCategoryResource, Category>(); });
+            CreateMap<SaveCategoryResource, Category>();
         }
     }
 
