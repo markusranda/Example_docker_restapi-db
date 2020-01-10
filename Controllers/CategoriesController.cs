@@ -34,6 +34,7 @@ namespace Supermarket.API.Controllers {
         [HttpPost]
         public async Task<IActionResult> PostAsync([FromBody] SaveCategoryResource resource)
         {
+            // Check if the user data works with this model
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState.GetErrorMessages());
@@ -47,6 +48,28 @@ namespace Supermarket.API.Controllers {
 
             var categoryResource = _mapper.Map<Category, CategoryResource>(result.Category);
             return Ok(categoryResource);
+        }
+
+        [HttpPut("{id}")]
+        public async Task<IActionResult> PutAsync(int id, [FromBody] SaveCategoryResource resource)
+        {
+            // Check if the user data works with this model
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState.GetErrorMessages());
+            }
+
+            var category = _mapper.Map<SaveCategoryResource, Category>(resource);
+            var result = await _categoryService.UpdateAsync(id, category);
+
+            if (!result.Success)
+            {
+                return BadRequest(result.Message);
+            }
+
+            var categoryResouce = 
+                _mapper.Map<Category, CategoryResource>(result.Category);
+            return Ok(categoryResouce);
         }
     }
 

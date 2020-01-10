@@ -8,6 +8,14 @@ namespace Supermarket.API.Domain.Repositories {
         Task<IEnumerable<Category>> ListAsync();
 
         Task AddAsync(Category category);
+
+        Task<Category> FindByIdAsync(int id);
+            
+        /**
+         * The reason for this method not being async, is because EF COre API does
+         * not require an asynchronous method to update models.
+         */
+        void Update(Category category);
     }
 
 }

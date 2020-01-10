@@ -5,6 +5,7 @@ using Supermarket.API.Domain.Models;
 using Supermarket.API.Domain.Repositories;
 using Supermarket.API.Domain.Services;
 using Supermarket.API.Domain.Services.Communication;
+using Supermarket.API.Resources;
 
 namespace Supermarket.API.Services {
 
@@ -37,6 +38,28 @@ namespace Supermarket.API.Services {
                 // todo implement logging
                 return new SaveCategoryResponse(
                     $"An error occurred when saving the category: {e.Message}");
+            }
+        }
+
+        public async Task<SaveCategoryResponse> UpdateAsync(int id, Category category)
+        {
+            var existingCategory = await _categoryRepository.FindByIdAsync(id);
+            
+            if (existingCategory == null) 
+                return new SaveCategoryResponse("Category not found");
+
+            existingCategory.Name = category.Name;
+
+            try
+            {
+                _categoryRepository.Update(existingCategory);
+                await _unitOfWork.CompleteAsync();
+
+                return new SaveCategoryResponse(existingCategory);
+            }
+            catch (Exception ex)
+            {
+                return new SaveCategoryResponse($"An error occurred when updating the category: {ex.Message}");
             }
         }
     }
