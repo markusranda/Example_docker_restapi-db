@@ -8,6 +8,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Supermarket.API.Domain.Security;
 using Supermarket.API.Persistence.Contexts;
 
 namespace Supermarket.API {
@@ -18,9 +19,12 @@ namespace Supermarket.API {
             var host = BuildWebHost(args);
 
             using (var scope = host.Services.CreateScope())
-            using (var context = scope.ServiceProvider.GetService<AppDbContext>())
             {
+                var services = scope.ServiceProvider;
+                var context = scope.ServiceProvider.GetService<AppDbContext>();
                 context.Database.EnsureCreated();
+                var passwordHasher = services.GetService<IPasswordHasher>();
+                DatabaseSeed.Seed(context, passwordHasher);
             }
 
             host.Run();

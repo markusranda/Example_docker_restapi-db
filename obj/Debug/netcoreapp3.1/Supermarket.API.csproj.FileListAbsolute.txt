@@ -25,3 +25,11 @@
 /home/markus/projects/src/Supermarket.API/obj/Debug/netcoreapp3.1/Supermarket.API.csproj.CopyComplete
 /home/markus/projects/src/Supermarket.API/bin/Debug/netcoreapp3.1/AutoMapper.dll
 /home/markus/projects/src/Supermarket.API/bin/Debug/netcoreapp3.1/AutoMapper.Extensions.Microsoft.DependencyInjection.dll
+/home/markus/projects/src/Supermarket.API/bin/Debug/netcoreapp3.1/Microsoft.AspNetCore.Authentication.JwtBearer.dll
+/home/markus/projects/src/Supermarket.API/bin/Debug/netcoreapp3.1/Microsoft.IdentityModel.JsonWebTokens.dll
+/home/markus/projects/src/Supermarket.API/bin/Debug/netcoreapp3.1/Microsoft.IdentityModel.Logging.dll
+/home/markus/projects/src/Supermarket.API/bin/Debug/netcoreapp3.1/Microsoft.IdentityModel.Protocols.dll
+/home/markus/projects/src/Supermarket.API/bin/Debug/netcoreapp3.1/Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+/home/markus/projects/src/Supermarket.API/bin/Debug/netcoreapp3.1/Microsoft.IdentityModel.Tokens.dll
+/home/markus/projects/src/Supermarket.API/bin/Debug/netcoreapp3.1/Newtonsoft.Json.dll
+/home/markus/projects/src/Supermarket.API/bin/Debug/netcoreapp3.1/System.IdentityModel.Tokens.Jwt.dll

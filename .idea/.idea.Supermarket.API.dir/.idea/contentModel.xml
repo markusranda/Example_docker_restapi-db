@@ -7,11 +7,24 @@
       <e p=".gitignore" t="Include" />
       <e p="Controllers" t="Include">
         <e p="CategoriesController.cs" t="Include" />
+        <e p="LoginController.cs" t="Include" />
         <e p="ProductsController.cs" t="Include" />
         <e p="WeatherForecastController.cs" t="Include" />
       </e>
       <e p="Domain" t="Include">
         <e p="Models" t="Include">
+          <e p="Auth" t="Include">
+            <e p="ERole.cs" t="Include" />
+            <e p="Role.cs" t="Include" />
+            <e p="Token" t="Include">
+              <e p="AccessToken.cs" t="Include" />
+              <e p="ITokenHandler.cs" t="Include" />
+              <e p="JsonWebToken.cs" t="Include" />
+              <e p="RefreshToken.cs" t="Include" />
+            </e>
+            <e p="User.cs" t="Include" />
+            <e p="UserRole.cs" t="Include" />
+          </e>
           <e p="Category.cs" t="Include" />
           <e p="EUnitOfMeasurement.cs" t="Include" />
           <e p="Product.cs" t="Include" />
@@ -20,14 +33,22 @@
           <e p="ICategoryRepository.cs" t="Include" />
           <e p="IProductRepository.cs" t="Include" />
           <e p="IUnitOfWork.cs" t="Include" />
+          <e p="IUserRepository.cs" t="Include" />
+        </e>
+        <e p="Security" t="Include">
+          <e p="IPasswordHasher.cs" t="Include" />
         </e>
         <e p="Services" t="Include">
           <e p="Communication" t="Include">
             <e p="BaseResponse.cs" t="Include" />
             <e p="CategoryResponse.cs" t="Include" />
+            <e p="CreateUserResponse.cs" t="Include" />
+            <e p="TokenResponse.cs" t="Include" />
           </e>
+          <e p="IAuthenticationService.cs" t="Include" />
           <e p="ICategoryService.cs" t="Include" />
           <e p="IProductService.cs" t="Include" />
+          <e p="IUserService.cs" t="Include" />
         </e>
       </e>
       <e p="Extensions" t="Include">
@@ -41,12 +62,14 @@
       <e p="Persistence" t="Include">
         <e p="Contexts" t="Include">
           <e p="AppDbContext.cs" t="Include" />
+          <e p="DatabaseSeed.cs" t="Include" />
         </e>
         <e p="Repositories" t="Include">
           <e p="BaseRepository.cs" t="Include" />
           <e p="CategoryRepository.cs" t="Include" />
           <e p="ProductRepository.cs" t="Include" />
           <e p="UnitOfWork.cs" t="Include" />
+          <e p="UserRepository.cs" t="Include" />
         </e>
       </e>
       <e p="Program.cs" t="Include" />
@@ -54,13 +77,32 @@
         <e p="launchSettings.json" t="Include" />
       </e>
       <e p="Resources" t="Include">
+        <e p="Auth" t="Include">
+          <e p="AccessTokenResource.cs" t="Include" />
+          <e p="RefreshTokenResource.cs" t="Include" />
+          <e p="RevokeTokenResource.cs" t="Include" />
+          <e p="UserCredentialResource.cs" t="Include" />
+          <e p="UserResource.cs" t="Include" />
+        </e>
         <e p="CategoryResource.cs" t="Include" />
         <e p="ProductResource.cs" t="Include" />
         <e p="SaveCategoryResource.cs" t="Include" />
       </e>
+      <e p="Security" t="Include">
+        <e p="Hashing" t="Include">
+          <e p="PasswordHasher.cs" t="Include" />
+        </e>
+        <e p="Tokens" t="Include">
+          <e p="SigningConfigurations.cs" t="Include" />
+          <e p="TokenHandler.cs" t="Include" />
+          <e p="TokenOptions.cs" t="Include" />
+        </e>
+      </e>
       <e p="Services" t="Include">
+        <e p="AuthenticationService.cs" t="Include" />
         <e p="CategoryService.cs" t="Include" />
         <e p="ProductService.cs" t="Include" />
+        <e p="UserService.cs" t="Include" />
       </e>
       <e p="Startup.cs" t="Include" />
       <e p="Supermarket.API.csproj" t="IncludeRecursive" />
@@ -68,6 +110,7 @@
       <e p="appsettings.Development.json" t="Include" />
       <e p="appsettings.json" t="Include" />
       <e p="bin" t="ExcludeRecursive" />
+      <e p="mono_crash.mem.1407.1.blob" t="Include" />
       <e p="obj" t="ExcludeRecursive">
         <e p="Debug" t="Include">
           <e p="netcoreapp3.1" t="Include">
