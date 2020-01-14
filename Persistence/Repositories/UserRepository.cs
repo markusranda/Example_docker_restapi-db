@@ -18,12 +18,17 @@ namespace Supermarket.API.Persistence.Repositories {
 
         public async Task AddAsync(User user, ERole[] userRoles)
         {
-            var roles = await _context.Roles.Where(r => userRoles.Any(ur => ur.ToString() == r.Name))
-                .ToListAsync();
+            var roles = await _context.Roles.ToListAsync();
 
             foreach(var role in roles)
             {
-                user.UserRoles.Add(new UserRole { RoleId = role.Id });
+                foreach (var userRole in userRoles)
+                {
+                    if (role.Name.Equals(userRole.ToString()))
+                    {
+                        user.UserRoles.Add(new UserRole { RoleId = role.Id });
+                    }                    
+                }
             }
                
             _context.Users.Add(user);
