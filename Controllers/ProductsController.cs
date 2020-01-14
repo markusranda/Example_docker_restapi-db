@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Supermarket.API.Domain.Models;
 using Supermarket.API.Domain.Services;
@@ -20,6 +21,7 @@ namespace Supermarket.API.Controllers {
         }
 
         [HttpGet]
+        [Authorize(Roles = "Administrator")]
         public async Task<IEnumerable<ProductResource>> ListAsync()
         {
             var products = await _productService.ListAsync();
