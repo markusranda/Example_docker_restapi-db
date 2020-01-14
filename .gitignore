@@ -1,4 +1,4 @@
 *.blob
-/.idea
-/bin
-/obj
+.idea/
+bin/
+obj/
