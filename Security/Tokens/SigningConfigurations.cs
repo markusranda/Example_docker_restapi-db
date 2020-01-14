@@ -1,3 +1,4 @@
+using System;
 using System.Security.Cryptography;
 using Microsoft.IdentityModel.Tokens;
 
@@ -12,9 +13,10 @@ namespace Supermarket.API.Security.Tokens {
             using(var provider = new RSACryptoServiceProvider(2048))
             {
                 Key = new RsaSecurityKey(provider.ExportParameters(true));
+                Console.WriteLine(provider.ToXmlString(false));
             }
 
-            SigningCredentials = new SigningCredentials(Key, SecurityAlgorithms.RsaSha256Signature);
+            SigningCredentials = new SigningCredentials(Key, SecurityAlgorithms.RsaSha256);
         }
 
     }
