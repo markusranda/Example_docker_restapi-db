@@ -1,9 +1,13 @@
 using System;
+using System.IO;
+using System.Security.Cryptography;
+using System.Security.Cryptography.X509Certificates;
+using System.Threading.Tasks;
 using AutoMapper;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -19,7 +23,6 @@ using Supermarket.API.Persistence.Repositories;
 using Supermarket.API.Security.Tokens;
 using Supermarket.API.Services;
 using TokenHandler = Supermarket.API.Security.Tokens.TokenHandler;
-using TokenOptions = Supermarket.API.Security.Tokens.TokenOptions;
 
 namespace Supermarket.API {
 
@@ -53,19 +56,20 @@ namespace Supermarket.API {
             services.AddScoped<IProductService, ProductService>();
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<IAuthenticationService, AuthenticationService>();
-            
-            services.AddScoped<IUnitOfWork, UnitOfWork>();
 
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
+            
             services.Configure<TokenOptions>(Configuration.GetSection("TokenOptions"));
             var tokenOptions = Configuration.GetSection("TokenOptions")
                 .Get<TokenOptions>();
-            
+
             var signingConfigurations = new SigningConfigurations();
             services.AddSingleton(signingConfigurations);
 
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddJwtBearer(jwtBearerOptions =>
                 {
+                    jwtBearerOptions.SaveToken = true;
                     jwtBearerOptions.TokenValidationParameters = new TokenValidationParameters()
                     {
                         ValidateAudience = true,
@@ -76,13 +80,38 @@ namespace Supermarket.API {
                         IssuerSigningKey = signingConfigurations.Key,
                         ClockSkew = TimeSpan.Zero
                     };
+                    // jwtBearerOptions.Events = new JwtBearerEvents()
+                    // {
+                    //     OnChallenge = context =>
+                    //     {
+                    //         Console.WriteLine("OnChallenge: " + context.Response.StatusCode);
+                    //         return Task.CompletedTask;
+                    //     },
+                    //     OnAuthenticationFailed = context =>
+                    //     {
+                    //         Console.WriteLine("OnAuthenticationFailed: " + context.Exception.Message);
+                    //         return Task.CompletedTask;
+                    //     },
+                    //     OnForbidden = context =>
+                    //     {
+                    //         Console.WriteLine("OnForbidden: " + context.Response.StatusCode);
+                    //         return Task.CompletedTask;
+                    //     },
+                    //     OnMessageReceived = context =>
+                    //     {
+                    //         Console.WriteLine("OnMessageReceived: " + context.Response.StatusCode);
+                    //         return Task.CompletedTask;
+                    //     },
+                    //     OnTokenValidated = context =>
+                    //     {
+                    //         Console.WriteLine("OnTokenValidated: " + context.Response.StatusCode);
+                    //         return Task.CompletedTask;
+                    //     }
+                    // };
                 });
             
-            // Shows more info about Token trouble, should maybe no be set to true in prod
-            IdentityModelEventSource.ShowPII = true;
-
             // May be wrong to use current parameter, was added to resolve error
-            services.AddAutoMapper(typeof(Startup)); 
+            services.AddAutoMapper(typeof(Startup));
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -96,17 +125,16 @@ namespace Supermarket.API {
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
-            
-            app.UseHttpsRedirection();
+
+            // app.UseHttpsRedirection();
 
             app.UseRouting();
 
-            app.UseAuthorization();
+            app.UseAuthentication(); // fant den her etter 3 daga
 
-            app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapControllers();
-            });
+            app.UseAuthorization(); // trudd den her va nokk, veldig like navn...
+            
+            app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
         }
     }
 

@@ -21,7 +21,7 @@ namespace Supermarket.API.Controllers {
         }
 
         [HttpGet]
-        [Authorize(Roles = "Administrator")]
+        [Authorize]
         public async Task<IEnumerable<ProductResource>> ListAsync()
         {
             var products = await _productService.ListAsync();
