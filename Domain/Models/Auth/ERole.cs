@@ -1,8 +1,10 @@
-namespace Supermarket.API.Domain.Models.Auth {
+using System.ComponentModel;
 
-    public enum ERole {
-        Common = 1,
-        Administrator = 2
+namespace Supermarket.API.Domain.Models.Auth
+{
+    public enum ERole
+    {
+        [Description("Common")] Common = 1,
+        [Description("Administrator")] Administrator = 2
     }
-
 }
