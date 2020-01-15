@@ -67,6 +67,8 @@ namespace Supermarket.API.Security.Tokens {
         {
             var accessTokenExpiration = DateTime.UtcNow.AddSeconds(_tokenOptions.AccessTokenExpiration);
 
+            var signingCredentials = _signingConfigurations.SigningCredentials;
+            
             var securityToken = new JwtSecurityToken
             (
                 issuer : _tokenOptions.Issuer,
@@ -74,7 +76,7 @@ namespace Supermarket.API.Security.Tokens {
                 claims : GetClaims(user),
                 expires : accessTokenExpiration,
                 notBefore : DateTime.UtcNow,
-                signingCredentials : _signingConfigurations.SigningCredentials
+                signingCredentials : signingCredentials
             );
 
             var handler = new JwtSecurityTokenHandler();
@@ -88,12 +90,13 @@ namespace Supermarket.API.Security.Tokens {
             var claims = new List<Claim>
             {
                 new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
-                new Claim(JwtRegisteredClaimNames.Sub, user.Email)
+                new Claim(JwtRegisteredClaimNames.Sub, user.Email),
+                new Claim(JwtRegisteredClaimNames.Iat, ((DateTimeOffset)DateTime.Now).ToUnixTimeSeconds().ToString())
             };
 
             foreach (var userRole in user.UserRoles)
             {
-                claims.Add(new Claim(ClaimTypes.Role, userRole.Role.Name));
+                claims.Add(new Claim("role", userRole.Role.Name));
             }
 
             return claims;
