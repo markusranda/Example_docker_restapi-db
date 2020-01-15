@@ -4,10 +4,10 @@ using Supermarket.API.Domain.Models;
 using Supermarket.API.Domain.Repositories;
 using Supermarket.API.Domain.Services;
 
-namespace Supermarket.API.Services {
-
-    public class ProductService : IProductService {
-
+namespace Supermarket.API.Services
+{
+    public class ProductService : IProductService
+    {
         private readonly IProductRepository _productRepository;
 
         public ProductService(IProductRepository productRepository)
@@ -20,5 +20,4 @@ namespace Supermarket.API.Services {
             return await _productRepository.ListAsync();
         }
     }
-
 }

@@ -1,8 +1,9 @@
 using System;
 
-namespace Supermarket.API.Domain.Models.Auth.Token {
-
-    public class AccessToken : JsonWebToken {
+namespace Supermarket.API.Domain.Models.Auth.Token
+{
+    public class AccessToken : JsonWebToken
+    {
         public RefreshToken RefreshToken { get; private set; }
 
         public AccessToken(string token, long expiration, RefreshToken refreshToken) : base(token, expiration)
@@ -13,5 +14,4 @@ namespace Supermarket.API.Domain.Models.Auth.Token {
             RefreshToken = refreshToken;
         }
     }
-
 }

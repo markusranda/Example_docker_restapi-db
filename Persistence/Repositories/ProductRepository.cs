@@ -6,9 +6,10 @@ using Supermarket.API.Domain.Models;
 using Supermarket.API.Domain.Repositories;
 using Supermarket.API.Persistence.Contexts;
 
-namespace Supermarket.API.Persistence.Repositories {
-
-    public class ProductRepository : BaseRepository, IProductRepository {
+namespace Supermarket.API.Persistence.Repositories
+{
+    public class ProductRepository : BaseRepository, IProductRepository
+    {
         public ProductRepository(AppDbContext context) : base(context)
         {
         }
@@ -19,5 +20,4 @@ namespace Supermarket.API.Persistence.Repositories {
                 .ToListAsync();
         }
     }
-
 }

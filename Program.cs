@@ -11,9 +11,10 @@ using Microsoft.Extensions.Logging;
 using Supermarket.API.Domain.Security;
 using Supermarket.API.Persistence.Contexts;
 
-namespace Supermarket.API {
-
-    public class Program {
+namespace Supermarket.API
+{
+    public class Program
+    {
         public static void Main(string[] args)
         {
             var host = BuildWebHost(args);
@@ -33,5 +34,4 @@ namespace Supermarket.API {
         public static IWebHost BuildWebHost(string[] args) =>
             WebHost.CreateDefaultBuilder(args).UseStartup<Startup>().Build();
     }
-
 }

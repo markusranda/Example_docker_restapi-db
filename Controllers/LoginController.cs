@@ -8,9 +8,10 @@ using Supermarket.API.Extensions;
 using Supermarket.API.Resources.Auth;
 using IAuthenticationService = Supermarket.API.Domain.Services.IAuthenticationService;
 
-namespace Supermarket.API.Controllers {
-
-    public class LoginController : Controller {
+namespace Supermarket.API.Controllers
+{
+    public class LoginController : Controller
+    {
         private readonly IMapper _mapper;
         private readonly IAuthenticationService _authenticationService;
 
@@ -34,7 +35,7 @@ namespace Supermarket.API.Controllers {
             var response =
                 await _authenticationService
                     .CreateAccessTokenAsync(userCredentialResource.Email,
-                    userCredentialResource.Password);
+                        userCredentialResource.Password);
 
             if (!response.Success)
                 return BadRequest(response.Message);
@@ -54,13 +55,15 @@ namespace Supermarket.API.Controllers {
             {
                 return BadRequest(ModelState.GetErrorMessages());
             }
-            
-            var response = await _authenticationService.RefreshTokenAsync(refreshTokenResource.Token, refreshTokenResource.UserEmail);
-            if(!response.Success)
+
+            var response =
+                await _authenticationService.RefreshTokenAsync(refreshTokenResource.Token,
+                    refreshTokenResource.UserEmail);
+            if (!response.Success)
             {
                 return BadRequest(response.Message);
             }
-           
+
             var tokenResource = _mapper.Map<AccessToken, AccessTokenResource>(response.Token);
             return Ok(tokenResource);
         }
@@ -79,5 +82,4 @@ namespace Supermarket.API.Controllers {
             return NoContent();
         }
     }
-
 }

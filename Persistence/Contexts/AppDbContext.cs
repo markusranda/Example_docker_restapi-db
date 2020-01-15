@@ -2,8 +2,8 @@ using Microsoft.EntityFrameworkCore;
 using Supermarket.API.Domain.Models;
 using Supermarket.API.Domain.Models.Auth;
 
-namespace Supermarket.API.Persistence.Contexts {
-
+namespace Supermarket.API.Persistence.Contexts
+{
     public class AppDbContext : DbContext
     {
         public DbSet<Category> Categories { get; set; }
@@ -11,24 +11,27 @@ namespace Supermarket.API.Persistence.Contexts {
         public DbSet<User> Users { get; set; }
         public DbSet<Role> Roles { get; set; }
 
-        public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) { }
+        public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
+        {
+        }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
 
             builder.Entity<UserRole>().HasKey(ur => new {ur.UserId, ur.RoleId});
-            
+
             builder.Entity<Category>().ToTable("Categories");
             builder.Entity<Category>().HasKey(p => p.Id);
             builder.Entity<Category>().Property(p => p.Id).IsRequired().ValueGeneratedOnAdd();
             builder.Entity<Category>().Property(p => p.Name).IsRequired().HasMaxLength(30);
-            builder.Entity<Category>().HasMany(p => p.Products).WithOne(p => p.Category).HasForeignKey(p => p.CategoryId);
+            builder.Entity<Category>().HasMany(p => p.Products).WithOne(p => p.Category)
+                .HasForeignKey(p => p.CategoryId);
 
             builder.Entity<Category>().HasData
             (
-                new Category { Id = 100, Name = "Fruits and Vegetables" }, // Id set manually due to in-memory provider
-                new Category { Id = 101, Name = "Dairy" }
+                new Category {Id = 100, Name = "Fruits and Vegetables"}, // Id set manually due to in-memory provider
+                new Category {Id = 101, Name = "Dairy"}
             );
 
             builder.Entity<Product>().ToTable("Products");

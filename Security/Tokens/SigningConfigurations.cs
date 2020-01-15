@@ -6,9 +6,10 @@ using System.Xml;
 using System.Xml.Linq;
 using Microsoft.IdentityModel.Tokens;
 
-namespace Supermarket.API.Security.Tokens {
-
-    public class SigningConfigurations {
+namespace Supermarket.API.Security.Tokens
+{
+    public class SigningConfigurations
+    {
         public SecurityKey Key { get; }
         public SigningCredentials SigningCredentials { get; }
 
@@ -145,5 +146,4 @@ namespace Supermarket.API.Security.Tokens {
             }
         }
     }
-
 }

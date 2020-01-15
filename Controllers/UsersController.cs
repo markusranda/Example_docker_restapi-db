@@ -5,10 +5,11 @@ using Supermarket.API.Domain.Models.Auth;
 using Supermarket.API.Domain.Services;
 using Supermarket.API.Resources.Auth;
 
-namespace Supermarket.API.Controllers {
-
+namespace Supermarket.API.Controllers
+{
     [Route("/api/[controller]")]
-    public class UsersController : Controller {
+    public class UsersController : Controller
+    {
         private readonly IMapper _mapper;
         private readonly IUserService _userService;
 
@@ -38,5 +39,4 @@ namespace Supermarket.API.Controllers {
             return Ok(userResource);
         }
     }
-
 }

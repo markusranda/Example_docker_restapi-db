@@ -1,10 +1,10 @@
 using System.ComponentModel;
 using System.Reflection;
 
-namespace Supermarket.API.Extensions {
-
-    public static class EnumExtensions {
-
+namespace Supermarket.API.Extensions
+{
+    public static class EnumExtensions
+    {
         public static string ToDescriptionString<TEnum>(this TEnum @enum)
         {
             // the "@" in front of enum is to make it a valid name, since enum is a reserved keyword in C#
@@ -15,5 +15,4 @@ namespace Supermarket.API.Extensions {
             return attributes?[0].Description ?? @enum.ToString();
         }
     }
-
 }

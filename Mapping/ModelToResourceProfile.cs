@@ -7,9 +7,10 @@ using Supermarket.API.Extensions;
 using Supermarket.API.Resources;
 using Supermarket.API.Resources.Auth;
 
-namespace Supermarket.API.Mapping {
-
-    public class ModelToResourceProfile : Profile {
+namespace Supermarket.API.Mapping
+{
+    public class ModelToResourceProfile : Profile
+    {
         public ModelToResourceProfile()
         {
             CreateMap<Category, CategoryResource>();
@@ -29,5 +30,4 @@ namespace Supermarket.API.Mapping {
                 .ForMember(a => a.Expiration, opt => opt.MapFrom(a => a.Expiration));
         }
     }
-
 }

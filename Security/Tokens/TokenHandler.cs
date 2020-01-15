@@ -9,8 +9,8 @@ using Supermarket.API.Domain.Models.Auth;
 using Supermarket.API.Domain.Models.Auth.Token;
 using Supermarket.API.Domain.Security;
 
-namespace Supermarket.API.Security.Tokens {
-
+namespace Supermarket.API.Security.Tokens
+{
     public class TokenHandler : ITokenHandler
     {
         private readonly ISet<RefreshToken> _refreshTokens = new HashSet<RefreshToken>();
@@ -19,7 +19,8 @@ namespace Supermarket.API.Security.Tokens {
         private readonly SigningConfigurations _signingConfigurations;
         private readonly IPasswordHasher _passwordHaser;
 
-        public TokenHandler(IOptions<TokenOptions> tokenOptionsSnapshot, SigningConfigurations signingConfigurations, IPasswordHasher passwordHaser)
+        public TokenHandler(IOptions<TokenOptions> tokenOptionsSnapshot, SigningConfigurations signingConfigurations,
+            IPasswordHasher passwordHaser)
         {
             _passwordHaser = passwordHaser;
             _tokenOptions = tokenOptionsSnapshot.Value;
@@ -56,8 +57,8 @@ namespace Supermarket.API.Security.Tokens {
         {
             var refreshToken = new RefreshToken
             (
-                token : _passwordHaser.HashPassword(Guid.NewGuid().ToString()),
-                expiration : DateTime.UtcNow.AddSeconds(_tokenOptions.RefreshTokenExpiration).Ticks
+                token: _passwordHaser.HashPassword(Guid.NewGuid().ToString()),
+                expiration: DateTime.UtcNow.AddSeconds(_tokenOptions.RefreshTokenExpiration).Ticks
             );
 
             return refreshToken;
@@ -68,15 +69,15 @@ namespace Supermarket.API.Security.Tokens {
             var accessTokenExpiration = DateTime.UtcNow.AddSeconds(_tokenOptions.AccessTokenExpiration);
 
             var signingCredentials = _signingConfigurations.SigningCredentials;
-            
+
             var securityToken = new JwtSecurityToken
             (
-                issuer : _tokenOptions.Issuer,
-                audience : _tokenOptions.Audience,
-                claims : GetClaims(user),
-                expires : accessTokenExpiration,
-                notBefore : DateTime.UtcNow,
-                signingCredentials : signingCredentials
+                issuer: _tokenOptions.Issuer,
+                audience: _tokenOptions.Audience,
+                claims: GetClaims(user),
+                expires: accessTokenExpiration,
+                notBefore: DateTime.UtcNow,
+                signingCredentials: signingCredentials
             );
 
             var handler = new JwtSecurityTokenHandler();
@@ -91,7 +92,7 @@ namespace Supermarket.API.Security.Tokens {
             {
                 new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
                 new Claim(JwtRegisteredClaimNames.Sub, user.Email),
-                new Claim(JwtRegisteredClaimNames.Iat, ((DateTimeOffset)DateTime.Now).ToUnixTimeSeconds().ToString())
+                new Claim(JwtRegisteredClaimNames.Iat, ((DateTimeOffset) DateTime.Now).ToUnixTimeSeconds().ToString())
             };
 
             foreach (var userRole in user.UserRoles)
@@ -102,5 +103,4 @@ namespace Supermarket.API.Security.Tokens {
             return claims;
         }
     }
-
 }

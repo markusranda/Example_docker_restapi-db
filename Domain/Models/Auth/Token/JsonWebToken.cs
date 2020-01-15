@@ -1,8 +1,9 @@
 using System;
 
-namespace Supermarket.API.Domain.Models.Auth.Token {
-
-    public abstract class JsonWebToken {
+namespace Supermarket.API.Domain.Models.Auth.Token
+{
+    public abstract class JsonWebToken
+    {
         public string Token { get; protected set; }
         public long Expiration { get; protected set; }
 
@@ -20,5 +21,4 @@ namespace Supermarket.API.Domain.Models.Auth.Token {
 
         public bool IsExpired() => DateTime.UtcNow.Ticks > Expiration;
     }
-
 }

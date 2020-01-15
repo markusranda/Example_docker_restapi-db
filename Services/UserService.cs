@@ -6,10 +6,10 @@ using Supermarket.API.Domain.Security;
 using Supermarket.API.Domain.Services;
 using Supermarket.API.Domain.Services.Communication;
 
-namespace Supermarket.API.Services {
-
-    public class UserService : IUserService {
-
+namespace Supermarket.API.Services
+{
+    public class UserService : IUserService
+    {
         private readonly IUserRepository _userRepository;
         private readonly IUnitOfWork _unitOfWork;
         private readonly IPasswordHasher _passwordHasher;
@@ -31,7 +31,7 @@ namespace Supermarket.API.Services {
 
             await _userRepository.AddAsync(user, userRoles);
             await _unitOfWork.CompleteAsync();
-            
+
             return new CreateUserResponse(true, null, user);
         }
 
@@ -40,5 +40,4 @@ namespace Supermarket.API.Services {
             return await _userRepository.FindByEmailAsync(email);
         }
     }
-
 }

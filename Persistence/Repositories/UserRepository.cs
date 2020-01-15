@@ -5,8 +5,8 @@ using Supermarket.API.Domain.Models.Auth;
 using Supermarket.API.Domain.Repositories;
 using Supermarket.API.Persistence.Contexts;
 
-namespace Supermarket.API.Persistence.Repositories {
-
+namespace Supermarket.API.Persistence.Repositories
+{
     public class UserRepository : IUserRepository
     {
         private readonly AppDbContext _context;
@@ -20,17 +20,17 @@ namespace Supermarket.API.Persistence.Repositories {
         {
             var roles = await _context.Roles.ToListAsync();
 
-            foreach(var role in roles)
+            foreach (var role in roles)
             {
                 foreach (var userRole in userRoles)
                 {
                     if (role.Name.Equals(userRole.ToString()))
                     {
-                        user.UserRoles.Add(new UserRole { RoleId = role.Id });
-                    }                    
+                        user.UserRoles.Add(new UserRole {RoleId = role.Id});
+                    }
                 }
             }
-               
+
             _context.Users.Add(user);
         }
 
@@ -41,5 +41,4 @@ namespace Supermarket.API.Persistence.Repositories {
                 .SingleOrDefaultAsync(u => u.Email == email);
         }
     }
-
 }

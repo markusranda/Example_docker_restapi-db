@@ -1,7 +1,7 @@
 using Supermarket.API.Domain.Models.Auth.Token;
 
-namespace Supermarket.API.Domain.Services.Communication {
-
+namespace Supermarket.API.Domain.Services.Communication
+{
     public class TokenResponse : BaseResponse
     {
         public AccessToken Token { get; set; }
@@ -11,5 +11,4 @@ namespace Supermarket.API.Domain.Services.Communication {
             Token = token;
         }
     }
-
 }

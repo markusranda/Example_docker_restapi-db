@@ -4,15 +4,16 @@ using Supermarket.API.Domain.Security;
 using Supermarket.API.Domain.Services;
 using Supermarket.API.Domain.Services.Communication;
 
-namespace Supermarket.API.Services {
-
-    public class AuthenticationService : IAuthenticationService {
-
+namespace Supermarket.API.Services
+{
+    public class AuthenticationService : IAuthenticationService
+    {
         private readonly IUserService _userService;
         private readonly IPasswordHasher _passwordHasher;
         private readonly ITokenHandler _tokenHandler;
 
-        public AuthenticationService(IUserService userService, IPasswordHasher passwordHasher, ITokenHandler tokenHandler)
+        public AuthenticationService(IUserService userService, IPasswordHasher passwordHasher,
+            ITokenHandler tokenHandler)
         {
             _userService = userService;
             _passwordHasher = passwordHasher;
@@ -28,7 +29,7 @@ namespace Supermarket.API.Services {
             }
 
             var token = _tokenHandler.CreateAccessToken(user);
-            
+
             return new TokenResponse(true, null, token);
         }
 
@@ -60,5 +61,4 @@ namespace Supermarket.API.Services {
             _tokenHandler.RevokeRefreshToken(refreshToken);
         }
     }
-
 }

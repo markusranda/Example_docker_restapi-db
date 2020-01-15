@@ -7,9 +7,10 @@ using Supermarket.API.Domain.Services;
 using Supermarket.API.Domain.Services.Communication;
 using Supermarket.API.Resources;
 
-namespace Supermarket.API.Services {
-
-    public class CategoryService : ICategoryService {
+namespace Supermarket.API.Services
+{
+    public class CategoryService : ICategoryService
+    {
         private readonly ICategoryRepository _categoryRepository;
         private readonly IUnitOfWork _unitOfWork;
 
@@ -88,5 +89,4 @@ namespace Supermarket.API.Services {
             }
         }
     }
-
 }

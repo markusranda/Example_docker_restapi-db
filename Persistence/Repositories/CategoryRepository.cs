@@ -6,9 +6,10 @@ using Supermarket.API.Domain.Models;
 using Supermarket.API.Domain.Repositories;
 using Supermarket.API.Persistence.Contexts;
 
-namespace Supermarket.API.Persistence.Repositories {
-
-    public class CategoryRepository : BaseRepository, ICategoryRepository {
+namespace Supermarket.API.Persistence.Repositories
+{
+    public class CategoryRepository : BaseRepository, ICategoryRepository
+    {
         public CategoryRepository(AppDbContext context) : base(context)
         {
         }
@@ -38,5 +39,4 @@ namespace Supermarket.API.Persistence.Repositories {
             _context.Categories.Remove(category);
         }
     }
-
 }

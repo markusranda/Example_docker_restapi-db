@@ -10,10 +10,11 @@ using Supermarket.API.Domain.Services;
 using Supermarket.API.Extensions;
 using Supermarket.API.Resources;
 
-namespace Supermarket.API.Controllers {
-
+namespace Supermarket.API.Controllers
+{
     [Route("/api/[controller]")]
-    public class ProductsController : Controller {
+    public class ProductsController : Controller
+    {
         private readonly IProductService _productService;
         private readonly IMapper _mapper;
 
@@ -24,15 +25,13 @@ namespace Supermarket.API.Controllers {
         }
 
         [HttpGet]
-        [Authorize(Roles="Administrator")]
+        [Authorize(Roles = "Administrator")]
         public async Task<IEnumerable<ProductResource>> ListAsync()
         {
             var products = await _productService.ListAsync();
-            var resources = 
+            var resources =
                 _mapper.Map<IEnumerable<Product>, IEnumerable<ProductResource>>(products);
             return resources;
         }
-
     }
-
 }

@@ -5,9 +5,10 @@ using Supermarket.API.Domain.Models;
 using Supermarket.API.Domain.Services.Communication;
 using Supermarket.API.Resources;
 
-namespace Supermarket.API.Domain.Services {
-
-    public interface ICategoryService {
+namespace Supermarket.API.Domain.Services
+{
+    public interface ICategoryService
+    {
         Task<IEnumerable<Category>> ListAsync();
 
         Task<CategoryResponse> SaveAsync(Category category);
@@ -16,5 +17,4 @@ namespace Supermarket.API.Domain.Services {
 
         Task<CategoryResponse> DeleteAsync(int id);
     }
-
 }

@@ -24,9 +24,10 @@ using Supermarket.API.Security.Tokens;
 using Supermarket.API.Services;
 using TokenHandler = Supermarket.API.Security.Tokens.TokenHandler;
 
-namespace Supermarket.API {
-
-    public class Startup {
+namespace Supermarket.API
+{
+    public class Startup
+    {
         public IConfiguration Configuration { get; }
 
         public Startup(IConfiguration configuration)
@@ -58,7 +59,7 @@ namespace Supermarket.API {
             services.AddScoped<IAuthenticationService, AuthenticationService>();
 
             services.AddScoped<IUnitOfWork, UnitOfWork>();
-            
+
             services.Configure<TokenOptions>(Configuration.GetSection("TokenOptions"));
             var tokenOptions = Configuration.GetSection("TokenOptions")
                 .Get<TokenOptions>();
@@ -109,7 +110,7 @@ namespace Supermarket.API {
                     //     }
                     // };
                 });
-            
+
             // May be wrong to use current parameter, was added to resolve error
             services.AddAutoMapper(typeof(Startup));
         }
@@ -133,9 +134,8 @@ namespace Supermarket.API {
             app.UseAuthentication(); // fant den her etter 3 daga
 
             app.UseAuthorization(); // trudd den her va nokk, veldig like navn...
-            
+
             app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
         }
     }
-
 }

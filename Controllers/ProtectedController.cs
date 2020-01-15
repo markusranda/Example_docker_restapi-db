@@ -1,8 +1,8 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Supermarket.API.Controllers {
-
+namespace Supermarket.API.Controllers
+{
     public class ProtectedController : Controller
     {
         [HttpGet]
@@ -21,5 +21,4 @@ namespace Supermarket.API.Controllers {
             return Ok("Hello admin!.");
         }
     }
-
 }

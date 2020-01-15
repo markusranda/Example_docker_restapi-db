@@ -1,6 +1,7 @@
-namespace Supermarket.API.Domain.Services.Communication {
-
-    public abstract class BaseResponse {
+namespace Supermarket.API.Domain.Services.Communication
+{
+    public abstract class BaseResponse
+    {
         public bool Success { get; protected set; }
         public string Message { get; protected set; }
 
@@ -10,5 +11,4 @@ namespace Supermarket.API.Domain.Services.Communication {
             Message = message;
         }
     }
-
 }

@@ -3,14 +3,15 @@ using System.Linq;
 using Supermarket.API.Domain.Models.Auth;
 using Supermarket.API.Domain.Security;
 
-namespace Supermarket.API.Persistence.Contexts {
-
+namespace Supermarket.API.Persistence.Contexts
+{
     /// <summary>
     /// EF Core already supports database seeding throught overriding "OnModelCreating", but I decided to create a separate seed class to avoid 
     /// injecting IPasswordHasher into AppDbContext.
     /// To understand how to use database seeding into DbContext classes, check this link: https://docs.microsoft.com/en-us/ef/core/modeling/data-seeding
     /// </summary>
-    public class DatabaseSeed {
+    public class DatabaseSeed
+    {
         public static void Seed(AppDbContext context, IPasswordHasher passwordHasher)
         {
             context.Database.EnsureCreated();
@@ -23,7 +24,7 @@ namespace Supermarket.API.Persistence.Contexts {
                     new Role {Name = ERole.Common.ToString()},
                     new Role {Name = ERole.Administrator.ToString()}
                 };
-                
+
                 context.Roles.AddRange(roles);
                 context.SaveChanges();
             }
@@ -40,7 +41,7 @@ namespace Supermarket.API.Persistence.Contexts {
                 users[0].UserRoles.Add(new UserRole
                 {
                     RoleId = context.Roles.SingleOrDefault(
-                            r => r.Name == ERole.Administrator.ToString()).Id
+                        r => r.Name == ERole.Administrator.ToString()).Id
                 });
 
                 users[1].UserRoles.Add(new UserRole
@@ -48,11 +49,10 @@ namespace Supermarket.API.Persistence.Contexts {
                     RoleId = context.Roles.SingleOrDefault(
                         r => r.Name == ERole.Common.ToString()).Id
                 });
-                
+
                 context.Users.AddRange(users);
                 context.SaveChanges();
             }
         }
     }
-
 }
