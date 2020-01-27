@@ -14,6 +14,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Logging;
 using Microsoft.IdentityModel.Tokens;
+using Supermarket.API.Domain.Models.Auth;
 using Supermarket.API.Domain.Models.Auth.Token;
 using Supermarket.API.Domain.Repositories;
 using Supermarket.API.Domain.Security;
@@ -41,9 +42,10 @@ namespace Supermarket.API
 
             services.AddDbContext<AppDbContext>(options =>
             {
-                options.UseInMemoryDatabase("supermarket-api-in-memory");
+                // options.UseInMemoryDatabase("supermarket-api-in-memory");
+                options.UseNpgsql(Configuration.GetConnectionString("DefaultConnection"));
             });
-
+            
             services.AddSingleton<IPasswordHasher, Security.Hashing.PasswordHasher>();
             services.AddSingleton<ITokenHandler, TokenHandler>();
 
