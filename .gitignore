@@ -5,6 +5,7 @@ project.lock.json
 *.pyc
 nupkg/
 Migrations/
+*.blob
 
 # Visual Studio Code
 .vscode
