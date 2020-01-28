@@ -2,9 +2,13 @@ using System;
 using System.CodeDom.Compiler;
 using System.IO;
 using System.Security.Cryptography;
+using System.Security.Cryptography.X509Certificates;
 using System.Xml;
 using System.Xml.Linq;
 using Microsoft.IdentityModel.Tokens;
+using Supermarket.API.Domain.Security;
+using Supermarket.API.Extensions;
+using Supermarket.API.Utilities;
 
 namespace Supermarket.API.Security.Tokens
 {
@@ -13,14 +17,18 @@ namespace Supermarket.API.Security.Tokens
         public SecurityKey Key { get; }
         public SigningCredentials SigningCredentials { get; }
 
+        public  String PublicKeyPem { get; }
+
         public SigningConfigurations()
         {
             using (var provider = new RSACryptoServiceProvider(2048))
             {
                 Key = new RsaSecurityKey(provider.ExportParameters(true));
-                var writer = Console.Out;
+                var writer = new StringWriter();
                 ExportPublicKey(provider, writer);
-                writer.Flush();
+                PublicKeyPem = writer.ToString();
+                FileHandler.WriteFileAsync("", "publickey.txt", PublicKeyPem);
+                Console.WriteLine("PUBLIC KEY FROM FIELD: \n" + PublicKeyPem);
             }
 
             SigningCredentials = new SigningCredentials(Key, SecurityAlgorithms.RsaSha256);
@@ -32,6 +40,7 @@ namespace Supermarket.API.Security.Tokens
         private static void ExportPublicKey(RSACryptoServiceProvider csp, TextWriter outputStream)
         {
             var parameters = csp.ExportParameters(false);
+            
             using (var stream = new MemoryStream())
             {
                 var writer = new BinaryWriter(stream);

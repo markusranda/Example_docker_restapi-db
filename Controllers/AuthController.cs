@@ -7,6 +7,7 @@ using Microsoft.Win32.SafeHandles;
 using Supermarket.API.Domain.Models.Auth.Token;
 using Supermarket.API.Extensions;
 using Supermarket.API.Resources.Auth;
+using Supermarket.API.Utilities;
 using IAuthenticationService = Supermarket.API.Domain.Services.IAuthenticationService;
 
 namespace Supermarket.API.Controllers
@@ -87,7 +88,7 @@ namespace Supermarket.API.Controllers
         [HttpGet]
         public async Task<String> GetPublicKey()
         {
-            throw new NotImplementedException();
+            return await FileHandler.ReadTextFileAsync("", "publickey.txt");
         }
     }
 }
