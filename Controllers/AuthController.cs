@@ -1,3 +1,4 @@
+using System;
 using System.Threading.Tasks;
 using AutoMapper;
 using Microsoft.AspNetCore.Authentication;
@@ -80,6 +81,13 @@ namespace Supermarket.API.Controllers
 
             _authenticationService.RevokeRefreshToken(revokeTokenResource.Token);
             return NoContent();
+        }
+
+        [Route("api/publickey.pem")]
+        [HttpGet]
+        public async Task<String> GetPublicKey()
+        {
+            throw new NotImplementedException();
         }
     }
 }
