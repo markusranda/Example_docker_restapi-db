@@ -10,6 +10,8 @@ namespace Supermarket.API.Persistence.Contexts
         public DbSet<Product> Products { get; set; }
         public DbSet<User> Users { get; set; }
         public DbSet<Role> Roles { get; set; }
+        
+        public DbSet<Highscore> Highscores { get; set; }
 
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
         {
@@ -32,6 +34,31 @@ namespace Supermarket.API.Persistence.Contexts
             (
                 new Category {Id = 100, Name = "Fruits and Vegetables"}, // Id set manually due to in-memory provider
                 new Category {Id = 101, Name = "Dairy"}
+            );
+
+            builder.Entity<Highscore>().ToTable("Highscores");
+            builder.Entity<Highscore>().HasKey(hs => hs.Id);
+            builder.Entity<Highscore>().Property(hs => hs.Id).IsRequired().ValueGeneratedOnAdd();
+            builder.Entity<Highscore>().Property(hs => hs.Name).IsRequired().HasMaxLength(50);
+            builder.Entity<Highscore>().Property(hs => hs.HighScore).IsRequired();
+            builder.Entity<Highscore>().Property(hs => hs.Resolution).IsRequired().HasMaxLength(9);
+
+            builder.Entity<Highscore>().HasData
+            (
+                new Highscore
+                {
+                    Id = 69,
+                    Name = "Knauser",
+                    HighScore = 420,
+                    Resolution = "3840,2160"
+                },
+                new Highscore
+                {
+                    Id = 420,
+                    Name = "Knauser",
+                    HighScore = 69,
+                    Resolution = "3840,2160"
+                }
             );
 
             builder.Entity<Product>().ToTable("Products");

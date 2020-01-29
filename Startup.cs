@@ -9,16 +9,19 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Internal;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Logging;
 using Microsoft.IdentityModel.Tokens;
+using Supermarket.API.Domain.Models;
 using Supermarket.API.Domain.Models.Auth;
 using Supermarket.API.Domain.Models.Auth.Token;
 using Supermarket.API.Domain.Repositories;
 using Supermarket.API.Domain.Security;
 using Supermarket.API.Domain.Services;
+using Supermarket.API.Extensions;
 using Supermarket.API.Persistence.Contexts;
 using Supermarket.API.Persistence.Repositories;
 using Supermarket.API.Security.Tokens;
@@ -53,12 +56,14 @@ namespace Supermarket.API
             services.AddScoped<ICategoryRepository, CategoryRepository>();
             services.AddScoped<IProductRepository, ProductRepository>();
             services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<IHighscoreRepository, HighscoreRepository>();
 
             // Bind all services
             services.AddScoped<ICategoryService, CategoryService>();
             services.AddScoped<IProductService, ProductService>();
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<IAuthenticationService, AuthenticationService>();
+            services.AddScoped<IHighscoreService, HighscoreService>();
 
             services.AddScoped<IUnitOfWork, UnitOfWork>();
 

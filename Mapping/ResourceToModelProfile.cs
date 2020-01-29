@@ -13,6 +13,8 @@ namespace Supermarket.API.Mapping
             CreateMap<SaveCategoryResource, Category>();
 
             CreateMap<UserCredentialResource, User>();
+
+            CreateMap<SaveHighscoreResource, Highscore>();
         }
     }
 }
